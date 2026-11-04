@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>満洲文字一覧表</title>
+<style>
+@font-face{font-family:"ManchuFont";src:local("Mongolian Baiti"),local("MongolianBaiti")}
+:root{--fg:#1c1c1a;--mut:#5f5e5a;--line:#c8c6bc;--bg:#fff}
+@media (prefers-color-scheme:dark){:root{--fg:#f1efe8;--mut:#b4b2a9;--line:#55544f;--bg:#1c1c1a}}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Noto Sans CJK JP",sans-serif;line-height:1.6;font-size:14px}
+main{max-width:520px;margin:0 auto}
+h1{font-size:18px;font-weight:400;margin:0 0 4px}
+h2{font-size:16px;font-weight:400;margin:26px 0 6px;padding-bottom:4px;border-bottom:1.5px solid var(--fg)}
+.nav{font-size:12px;margin:0 0 12px}.nav a{color:var(--mut)}
+.box{border:1px solid var(--line);padding:8px 10px;font-size:12px;color:var(--mut);margin:0 0 6px}
+.g{font-family:"ManchuFont","Mongolian Baiti","Noto Sans Mongolian","Menksoft Qagan",serif;writing-mode:vertical-lr;display:inline-block;font-size:22px;line-height:1;height:62px}
+table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:12px}
+th{font-weight:400;color:var(--mut);padding:4px 0;border-bottom:1px solid var(--fg)}
+td{text-align:center;vertical-align:middle;padding:2px 0;border-bottom:.5px solid var(--line)}
+td.k{font-size:14px;width:34px}
+td.p{color:var(--mut);font-size:11px;width:38px}
+tr.e td{border-bottom:1px solid var(--fg)}
+.pp td{padding:6px 0;text-align:left}
+</style></head><body><main>
+<h1>満洲文字一覧表</h1>
+<div class="nav"><a href="index.html">入門トップ</a>　<a href="words.html">単語一覧</a>　<a href="grammar.html">文法</a>　<a href="converter.html">変換ツール</a></div>
+<div class="box">縦書きで、上から下へ書きます。表の字形は端末のフォントが自動で選んだもので、手書きの手本そのものではありません。表の左の列がメレンドルフ式のローマ字です。</div>
+
+<h2>母音</h2>
+<table id="v"><tr><th style="width:34px">転写</th><th>単独</th><th>語頭</th><th>語中</th><th>語末</th></tr></table>
+
+<h2>子音と、母音がついた形</h2>
+<div class="box">k・g・h・t・d・n・m などは、後ろの母音（a o ū と e i u）で字形が変わります。「単体」は子音だけの形で、右の a〜ū は、その子音に母音がついた音節の形です。</div>
+<table id="c"><tr><th></th><th></th><th>単体</th><th>a</th><th>e</th><th>i</th><th>o</th><th>u</th><th>ū</th></tr></table>
+
+<h2>特殊字（主に外来語）</h2>
+<table id="s"><tr><th style="width:44px">転写</th><th>単独</th><th>語頭</th><th>語中</th><th>語末</th></tr></table>
+
+<script>
+var Z="\u200D";
+var VOW=[["a","ᠠ"],["e","ᡝ"],["i","ᡳ"],["o","ᠣ"],["u","ᡠ"],["ū","ᡡ"]];
+var CON=[["n","ᠨ"],["k","ᡴ"],["g","ᡤ"],["h","ᡥ"],["b","ᠪ"],["p","ᡦ"],["s","ᠰ"],["š","ᡧ"],["t","ᡨ"],["d","ᡩ"],["l","ᠯ"],["m","ᠮ"],["c","ᠴ"],["j","ᠵ"],["y","ᠶ"],["r","ᠷ"],["f","ᡶ"],["w","ᠸ"],["ng","ᠩ"]];
+var SP=[["ts","ᡮ"],["dz","ᡯ"],["ž","ᡰ"]];
+var P=[["単独","",""],["語頭","",Z],["語中",Z,Z],["語末",Z,""]];
+function m(s){return "<span class='g'>"+s+"</span>"}
+function rows(list,id){var a="";list.forEach(function(x){a+="<tr class='e'><td class='k'>"+x[0]+"</td>"+P.map(function(p){return "<td>"+m(p[1]+x[1]+p[2])+"</td>"}).join("")+"</tr>"});document.getElementById(id).insertAdjacentHTML("beforeend",a)}
+rows(VOW,"v");rows(SP,"s");
+var b="";
+CON.forEach(function(c){P.forEach(function(p,i){
+ b+="<tr"+(i===3?" class='e'":"")+">"+(i===0?"<td class='k' rowspan='4'>"+c[0]+"</td>":"")+"<td class='p'>"+p[0]+"</td><td>"+m(p[1]+c[1]+p[2])+"</td>"+VOW.map(function(v){return "<td>"+m(p[1]+c[1]+v[1]+p[2])+"</td>"}).join("")+"</tr>";
+})});
+document.getElementById("c").insertAdjacentHTML("beforeend",b);
+</script></main></body></html>

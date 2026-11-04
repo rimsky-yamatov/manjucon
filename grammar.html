@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>満州語 文法の基本</title>
+<style>
+@font-face{font-family:"ManchuFont";src:local("Mongolian Baiti"),local("MongolianBaiti")}
+:root{--fg:#1c1c1a;--mut:#5f5e5a;--line:#c8c6bc;--bg:#fff}
+@media (prefers-color-scheme:dark){:root{--fg:#f1efe8;--mut:#b4b2a9;--line:#55544f;--bg:#1c1c1a}}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Noto Sans CJK JP",sans-serif;line-height:1.75;font-size:14px}
+main{max-width:640px;margin:0 auto}
+h1{font-size:18px;font-weight:400;margin:0 0 4px}
+h2{font-size:16px;font-weight:400;margin:28px 0 8px;padding-bottom:4px;border-bottom:1.5px solid var(--fg)}
+p{margin:0 0 10px}
+.nav{font-size:12px;margin:0 0 14px}.nav a{color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0 12px}
+th{font-weight:400;color:var(--mut);text-align:left;padding:4px 6px;border-bottom:1px solid var(--fg)}
+td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.r,b.r{font-weight:500}
+.mut{color:var(--mut);font-size:12px}
+.ex{display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);padding:10px 4px}
+.m{font-family:"ManchuFont","Mongolian Baiti","Noto Sans Mongolian","Menksoft Qagan",serif;writing-mode:vertical-lr;font-size:22px;line-height:1.2;max-height:220px;min-width:30px}
+.ex b{font-weight:500;display:block}
+.ex .g{font-size:12px;color:var(--mut)}
+.box{border:1px solid var(--line);padding:8px 10px;font-size:12px;color:var(--mut);margin:12px 0}
+</style></head><body><main>
+<h1>満州語 文法の基本</h1>
+<div class="nav"><a href="index.html">入門トップ</a>　<a href="words.html">単語一覧</a>　<a href="converter.html">変換ツール</a></div>
+<div class="box">ここに書いたのは、文語満州語の基本的な規則を簡略化したものです。例外が多い項目は「語により異なる」と書いて詳細を省きました。例文は文法に沿って組んだ作例で、実際の文献の引用ではありません。確かめるには、津曲敏郎『満洲語入門20講』や Gorelova『Manchu Grammar』、Norman の満英辞典などを参照してください。</div>
+
+<h2>1. 全体像</h2>
+<p>語順は主語・目的語・動詞（SOV）で、動詞は文末に置きます。修飾語は修飾される語の前に置き、助詞は名詞のうしろにつく後置詞です。書字は上から下へ、行は左から右へ進みます。</p>
+
+<h2>2. 母音調和</h2>
+<table><tr><th>分類</th><th>母音</th></tr>
+<tr><td>男性（陽）</td><td>a　o　ū</td></tr>
+<tr><td>女性（陰）</td><td>e</td></tr>
+<tr><td>中性</td><td>i　u</td></tr></table>
+<p>語尾につける接尾辞の母音は、語幹の母音に合わせて選ばれます（たとえば過去の -ha / -he / -ho）。k・g・h は、後ろの母音が a o ū か e i u かで字形が変わります（字形は変換ツールで確認できます）。</p>
+
+<h2>3. 代名詞</h2>
+<table><tr><th>人称</th><th>主格</th><th>属格（〜の）</th></tr>
+<tr><td>私</td><td>bi</td><td>mini</td></tr>
+<tr><td>君</td><td>si</td><td>sini</td></tr>
+<tr><td>彼・それ</td><td>tere</td><td>terei</td></tr>
+<tr><td>私たち（聞き手を含む）</td><td>muse</td><td>musei</td></tr>
+<tr><td>私たち（聞き手を含まない）</td><td>be</td><td>meni</td></tr>
+<tr><td>あなたたち</td><td>suwe</td><td>suweni</td></tr>
+<tr><td>彼ら</td><td>tese</td><td>tesei</td></tr></table>
+<p class="mut">疑問詞：ai（何）、we（誰）、ya（どれ）、udu（いくつ）、absi（どのように）、ainu（なぜ）。</p>
+
+<h2>4. 名詞につく助詞（格）</h2>
+<table><tr><th>はたらき</th><th>形</th><th>例</th></tr>
+<tr><td>主格</td><td>無標</td><td>bi</td></tr>
+<tr><td>属格（〜の）</td><td>i ／語末が母音のとき ni</td><td>manju gurun i bithe（満洲国の書）</td></tr>
+<tr><td>対格（〜を）</td><td>be</td><td>bithe be hūlambi（書を読む）</td></tr>
+<tr><td>与位格（〜に・〜で）</td><td>de</td><td>boo de bi（家にいる）</td></tr>
+<tr><td>奪格（〜から・〜より）</td><td>ci</td><td>alin ci wasimbi（山から下りる）</td></tr>
+<tr><td>具格（〜で・手段）</td><td>i</td><td>beri i gabtambi（弓で射る）</td></tr></table>
+<p>複数は、語によって -sa / -se / -ta / -te / -ri などの接尾辞がつき、規則は語ごとに違います。geren（衆）を前に置いて「geren niyalma（多くの人々）」のように言う方法も多く使われます。</p>
+
+<h2>5. 動詞の活用（jimbi「来る」の例）</h2>
+<table><tr><th>形</th><th>活用</th><th>意味</th></tr>
+<tr><td>辞書形・現在未来</td><td>ji<b class="r">mbi</b></td><td>来る</td></tr>
+<tr><td>過去</td><td>ji<b class="r">he</b></td><td>来た（過去分詞でもある）</td></tr>
+<tr><td>完了（確認）</td><td>ji<b class="r">hebi</b></td><td>来ている・来た</td></tr>
+<tr><td>過去の継続</td><td>ji<b class="r">mbihe</b></td><td>来ていた</td></tr>
+<tr><td>現在否定</td><td>ji<b class="r">rakū</b></td><td>来ない</td></tr>
+<tr><td>過去否定</td><td>jihe <b class="r">akū</b></td><td>来なかった</td></tr>
+<tr><td>命令</td><td>jio</td><td>来い（不規則なので語ごとに覚える）</td></tr>
+<tr><td>願望・意志</td><td>ji<b class="r">ki</b></td><td>来たい・来させよ</td></tr>
+<tr><td>連用（並列・同時）</td><td>ji<b class="r">me</b></td><td>来て・来ながら</td></tr>
+<tr><td>連用（完了後）</td><td>ji<b class="r">fi</b></td><td>来てから</td></tr>
+<tr><td>条件</td><td>ji<b class="r">ci</b></td><td>来るならば</td></tr>
+<tr><td>連体（現在未来）</td><td>ji<b class="r">re</b></td><td>来る〜（jire niyalma）</td></tr></table>
+<p class="mut">語幹末や母音調和で、-ha / -he / -ho、-ra / -re / -ro などと形が変わります。命令形は、tuwa（見よ）、gene（行け）、te（座れ）のように語ごとの形が多く、丁寧な依頼には -su がつきます（gaisu「お取りください」）。</p>
+
+<h2>5-2. 時制と接続の整理</h2>
+<table><tr><th>意味</th><th>形</th><th>例（jimbi）</th></tr>
+<tr><td>現在・未来</td><td>-mbi（専用の未来形はない）</td><td>jimbi（来る・来るだろう）</td></tr>
+<tr><td>過去</td><td>-ha / -he / -ho / -ka / -ke / -ko</td><td>jihe（来た）</td></tr>
+<tr><td>完了・確認</td><td>過去形 ＋ bi（-habi など）</td><td>jihebi（来ている）</td></tr>
+<tr><td>過去の継続</td><td>-mbihe</td><td>jimbihe（来ていた）</td></tr>
+<tr><td>意志・願い</td><td>-ki</td><td>jiki（来よう・来たい）</td></tr>
+<tr><td>推量</td><td>文末に dere（〜だろう）</td><td>jimbi dere</td></tr>
+<tr><td>同時・並列</td><td>-me</td><td>jime</td></tr>
+<tr><td>完了してから</td><td>-fi</td><td>jifi</td></tr>
+<tr><td>条件（〜ならば）</td><td>-ci</td><td>jici</td></tr>
+<tr><td>譲歩（〜ても）</td><td>-cibe</td><td>jicibe</td></tr>
+<tr><td>〜のとき</td><td>連体形 ＋ de</td><td>jire de</td></tr>
+<tr><td>〜した後</td><td>過去形 ＋ manggi</td><td>jihe manggi</td></tr>
+<tr><td>〜する前</td><td>連体形 ＋ onggolo</td><td>jire onggolo</td></tr>
+<tr><td>〜ので</td><td>連体形 ＋ jakade</td><td>jire jakade</td></tr>
+<tr><td>使役・受身</td><td>-bu-</td><td>tacimbi（学ぶ）→ tacibumbi（教える）</td></tr></table>
+<p class="mut">過去形の語尾は語幹の母音で -ha / -he / -ho、さらに -ka / -ke / -ko に分かれ、語ごとに異なります（jembi の過去 jeke など）。下の表で確認してください。語幹は辞書形から -mbi を取ったもので、-me / -fi / -ci / -ki はそのままつけられます（genembi → geneme, genefi, genici）。</p>
+<h2>5-3. 主な動詞の活用表</h2>
+<table id="vt"><tr><th>辞書形（意味）</th><th>過去</th><th>連体</th><th>命令</th><th>-fi</th><th>-ci</th></tr></table>
+<p class="mut">連体は「〜する（現在未来）」の形です。sambi の否定は sarkū、gaimbi の命令は gaisu など、不規則な形があります。</p>
+<h2>6. 否定・存在・疑問</h2>
+<table><tr><th>項目</th><th>形</th><th>例</th></tr>
+<tr><td>存在</td><td>bi（ある）／akū（ない）</td><td>bi boode bi</td></tr>
+<tr><td>動詞の否定</td><td>-rakū／過去は -he akū</td><td>bi ulhirakū（分からない）</td></tr>
+<tr><td>名詞文の否定</td><td>waka</td><td>ere manju waka</td></tr>
+<tr><td>禁止</td><td>ume ＋ 動詞（-ra / -re / -ro）</td><td>ume ekšire（急ぐな）</td></tr>
+<tr><td>許可・不許可</td><td>-ci ombi／-ci ojorakū</td><td>tuwaci ombi（見てよい）</td></tr>
+<tr><td>疑問</td><td>疑問詞、または文末に -o</td><td>ere ai?　bio?</td></tr></table>
+
+<h2>7. 修飾</h2>
+<p>形容詞は名詞の前に置きます（amba boo「大きな家」）。名詞が名詞を修飾するときは属格 i をつけます。動詞の連体形（-re / -ha / -he）も名詞の前に置いて修飾します（jihe niyalma「来た人」）。</p>
+
+<h2>8. 例文（作例）</h2>
+<div id="ex"></div>
+
+<h2>9. Möllendorff 式の表記の注意</h2>
+<table><tr><th>文字</th><th>ポイント</th></tr>
+<tr><td>ū</td><td>u と別の字。a o ū が男性母音のグループ</td></tr>
+<tr><td>š</td><td>主に i の前で s と区別（šan「耳」）</td></tr>
+<tr><td>ng</td><td>語中・語末のみ（angga「口」）</td></tr>
+<tr><td>ts / dz / ž</td><td>主に外来語・特殊な字</td></tr></table>
+
+<script>
+var M={a:"\u1820",e:"\u185D",i:"\u1873",o:"\u1823",u:"\u1860","ū":"\u1861",n:"\u1828",k:"\u1874",g:"\u1864",h:"\u1865",b:"\u182A",p:"\u1866",s:"\u1830","š":"\u1867",t:"\u1868",d:"\u1869",l:"\u182F",m:"\u182E",c:"\u1834",j:"\u1835",y:"\u1836",r:"\u1837",f:"\u1876",w:"\u1838",ng:"\u1829"};
+function conv(s){s=s.toLowerCase();var o="",i=0;while(i<s.length){if(s.substr(i,2)==="ng"){o+=M.ng;i+=2}else{o+=M[s[i]]!==undefined?M[s[i]]:(s[i]===" "?" ":"");i++}}return o}
+var V=[["jimbi", "来る", "jihe", "jire", "jio"], ["genembi", "行く", "genehe", "genere", "gene"], ["bimbi", "いる・ある", "bihe", "bisire", "—"], ["ombi", "なる・よい", "oho", "ojoro", "o"], ["sambi", "知る", "saha", "sara", "sa"], ["sembi", "言う", "sehe", "sere", "se"], ["jembi", "食べる", "jeke", "jetere", "je"], ["omimbi", "飲む", "omiha", "omire", "omi"], ["tuwambi", "見る", "tuwaha", "tuwara", "tuwa"], ["donjimbi", "聞く", "donjiha", "donjire", "donji"], ["gisurembi", "話す", "gisurehe", "gisurere", "gisure"], ["arambi", "作る・書く", "araha", "arara", "ara"], ["hūlambi", "読む・呼ぶ", "hūlaha", "hūlara", "hūla"], ["tacimbi", "学ぶ", "taciha", "tacire", "taci"], ["bumbi", "与える", "buhe", "bure", "bu"], ["gaimbi", "取る", "gaiha", "gaire", "gaisu"], ["tembi", "座る", "tehe", "tere", "te"], ["ilimbi", "立つ", "iliha", "ilire", "ili"], ["dosimbi", "入る", "dosika", "dosire", "dosi"], ["tucimbi", "出る", "tucike", "tucire", "tuci"], ["acambi", "会う・合う", "acaha", "acara", "aca"], ["mutembi", "できる", "mutehe", "mutere", "mute"], ["wajimbi", "終わる", "wajiha", "wajire", "waji"], ["amgambi", "眠る", "amgaha", "amgara", "amga"], ["bahanambi", "できる・会得する", "bahanaha", "bahanara", "bahana"], ["wambi", "殺す", "waha", "wara", "wa"], ["gabtambi", "射る", "gabtaha", "gabtara", "gabta"], ["ucarambi", "出会う", "ucaraha", "ucarara", "ucara"], ["isambi", "集まる", "isaha", "isara", "isa"], ["ukambi", "逃げる", "ukaha", "ukara", "uka"], ["jorimbi", "指す・示す", "joriha", "jorire", "jori"], ["alimbi", "受ける", "aliha", "alire", "ali"], ["weilembi", "仕える・働く", "weilehe", "weilere", "weile"], ["dedumbi", "横になる・寝る", "deduhe", "dedure", "dedu"], ["baitalambi", "用いる", "baitalaha", "baitalara", "baitala"]];
+document.getElementById("vt").insertAdjacentHTML("beforeend",V.map(function(v){var st=v[0].replace(/mbi$/,"");return "<tr><td><b class='r'>"+v[0]+"</b><br><span class='mut'>"+v[1]+"</span></td><td>"+v[2]+"</td><td>"+v[3]+"</td><td>"+v[4]+"</td><td>"+st+"fi</td><td>"+st+"ci</td></tr>"}).join(""));
+var X=[
+["bi manju gisun be tacimbi","bi｜manju gisun｜be｜tacimbi","私｜満州語｜〜を｜学ぶ　→「私は満州語を学ぶ」（SOV と対格 be）"],
+["si ya bade bi","si｜ya ba-de｜bi","君｜どの所に（ya ba ＋ de）｜いる　→「君はどこにいるか」"],
+["jihe niyalma","ji-he｜niyalma","来た（過去分詞）｜人　→「来た人」"],
+["bi ulhirakū","bi｜ulhi-rakū","私｜分かる＋否定　→「私は分からない」"],
+["ume jobošoro","ume｜jobošo-ro","禁止｜心配する（-ro）　→「心配するな」"],
+["tuwaci ombi","tuwa-ci｜ombi","見る（条件 -ci）｜よい　→「見てよい」"],
+["sikse aga agaha","sikse｜aga｜aga-ha","昨日｜雨｜降った（過去 -ha）　→「昨日雨が降った」"]];
+document.getElementById("ex").innerHTML=X.map(function(x){return "<div class='ex'><span class='m'>"+conv(x[0])+"</span><div><b>"+x[0]+"</b><span class='g'>"+x[1].replace(/｜/g," ／ ")+"<br>"+x[2].replace(/｜/g," ／ ")+"</span></div></div>"}).join("");
+</script></main></body></html>

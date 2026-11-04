@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>満州語 単語一覧</title>
+<style>
+@font-face{font-family:"ManchuFont";src:local("Mongolian Baiti"),local("MongolianBaiti")}
+:root{--fg:#1c1c1a;--mut:#5f5e5a;--line:#c8c6bc;--bg:#fff}
+@media (prefers-color-scheme:dark){:root{--fg:#f1efe8;--mut:#b4b2a9;--line:#55544f;--bg:#1c1c1a}}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Noto Sans CJK JP",sans-serif;line-height:1.5}
+main{max-width:640px;margin:0 auto}
+h1{font-size:18px;font-weight:400;margin:0 0 4px}
+.nav{font-size:12px;margin:0 0 12px}.nav a{color:var(--mut)}
+input[type=search]{width:100%;box-sizing:border-box;padding:8px;font-size:16px;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:0}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.cats button{font:inherit;font-size:12px;padding:3px 10px;border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:0;cursor:pointer}
+.cats button.on{border-color:var(--fg);color:var(--fg)}
+h2{font-size:15px;font-weight:400;margin:22px 0 0;padding-bottom:4px;border-bottom:1.5px solid var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr)}
+.w{display:flex;gap:10px;align-items:flex-start;padding:10px 6px;border-bottom:1px solid var(--line);min-height:70px}
+.m{font-family:"ManchuFont","Mongolian Baiti","Noto Sans Mongolian","Menksoft Qagan",serif;writing-mode:vertical-lr;font-size:26px;line-height:1.2;min-width:34px}
+.t b{font-weight:500;font-size:15px;display:block}
+.t span{font-size:12px;color:var(--mut)}
+.grid.one{grid-template-columns:1fr}.ph .m{max-height:220px;font-size:22px;min-width:0}.ph .t{padding-top:2px}
+p.nt{font-size:12px;color:var(--mut);margin:0}
+#n{font-size:12px;color:var(--mut);margin-top:8px}
+</style></head><body><main>
+<h1>満州語 単語一覧</h1>
+<div class="nav"><a href="index.html">入門トップ</a>　<a href="converter.html">変換ツール</a>　<a href="grammar.html">文法</a></div>
+<input type="search" id="q" placeholder="ローマ字または日本語で検索" spellcheck="false">
+<div class="cats" id="cats"></div>
+<p class="nt">「作例」と書いた見出しの文・句は、基本文法に沿って組んだ例です。実際の文献の引用ではないので、使う前に辞書や文法書で確かめてください。「elhe be fonjimbi」など定型的な言い方も同様です。</p>
+<div id="n"></div><div id="list"></div>
+<script>
+var M={a:"\u1820",e:"\u185D",i:"\u1873",o:"\u1823",u:"\u1860","ū":"\u1861",n:"\u1828",k:"\u1874",g:"\u1864",h:"\u1865",b:"\u182A",p:"\u1866",s:"\u1830","š":"\u1867",t:"\u1868",d:"\u1869",l:"\u182F",m:"\u182E",c:"\u1834",j:"\u1835",y:"\u1836",r:"\u1837",f:"\u1876",w:"\u1838",ng:"\u1829"};
+function conv(s){var o="",i=0;while(i<s.length){var t=s.substr(i,2);if(t==="ng"){o+=M.ng;i+=2}else{o+=M[s[i]]!==undefined?M[s[i]]:(s[i]===" "?" ":"");i++}}return o}
+var D=[
+["代名詞・助詞","bi 私;si 君;tere あれ・彼;ere これ;muse 我々（聞き手を含む）;be 我々（聞き手を含まない）／〜を;mini 私の;sini 君の;terei 彼の;i 〜の;ni 〜の（母音の後）;de 〜に・〜で;ci 〜から;ya どれ・どの;we 誰;ai 何;ainu なぜ;absi どのように;udu いくつ・いくら"],
+["家族・人","niyalma 人;haha 男;hehe 女;ama 父;eniye 母;mafa 祖父;mama 祖母;ahūn 兄;deo 弟;non 妹;sargan 妻;jui 子;haha jui|息子;sargan jui|娘;hojihon 婿;sakda 老人;asihan 若者;irgen 民;geren 衆;ejen 主人;han 汗;amban 大臣;hafan 官;baturu 勇者;mergen 賢い人"],
+["体","beye 体;uju 頭;cira 顔;yasa 目;šan 耳;oforo 鼻;angga 口;weihe 歯;funiyehe 髪;hefeli 腹;gala 手;bethe 足;yali 肉;giranggi 骨;senggi 血;ergen 命;mujilen 心"],
+["自然","abka 天;na 地;šun 太陽;biya 月;usiha 星;tugi 雲;edun 風;aga 雨;nimanggi 雪;gecen 霜;juhe 氷;akjan 雷;talkiyan 稲妻;tuwa 火;muke 水;alin 山;bira 川;mederi 海;omo 湖;moo 木;bigan 野;tala 野原;jugūn 道"],
+["動物","morin 馬;ihan 牛;honin 羊;indahūn 犬;ulgiyan 豚;coko 鶏;tasha 虎;arsalan 獅子;lefu 熊;niohe 狼;dobi 狐;gūlmahūn 兎;ulhūma 雉;gaha 烏;saksaha 鵲;niongniyaha 雁;nimaha 魚;meihe 蛇;muduri 龍;singgeri 鼠"],
+["数","emu 一;juwe 二;ilan 三;duin 四;sunja 五;ninggun 六;nadan 七;jakūn 八;uyun 九;juwan 十;orin 二十;gūsin 三十;dehi 四十;susai 五十;ninju 六十;nadanju 七十;jakūnju 八十;uyunju 九十;tanggū 百;minggan 千;tumen 万"],
+["色・方角・季節","fulgiyan 赤;suwayan 黄;lamun 青;niowanggiyan 緑;šanggiyan 白;šanyan 白（šanggiyan の短縮形）;sahaliyan 黒;dergi 東;wargi 西;julergi 南;amargi 北;niyengniyeri 春;juwari 夏;bolori 秋;tuweri 冬"],
+["時間","inenggi 日・昼;dobori 夜;erde 朝;yamji 夕;aniya 年;sikse 昨日;cimari 明日;nenehe 以前の;amaga 後の"],
+["場所・物","boo 家;duka 門;hoton 城;gašan 村;gurun 国;ba 所;dorgi 内;tulergi 外;sejen 車;jahūdai 船;loho 刀;beri 弓;sirdan 矢;gūsa 旗;bithe 書物・文字;gisun 言葉;hūsun 力;hūwa 庭;hūturi 福;hūlha 盗賊"],
+["食べ物","buda 飯;handu 稲・米;ufa 粉;sogi 野菜;nure 酒;cai 茶;mucen 鍋;jancuhūn 甘い;jušuhun 酸っぱい"],
+["形容詞","amba 大きい;ajige 小さい;sain 良い;ehe 悪い;labdu 多い;komso 少ない;den 高い;fangkala 低い;goro 遠い;hanci 近い;ujen 重い;weihuken 軽い;halhūn 熱い;šahūrun 寒い;mangga 難しい・強い;elhe 平和;inu 正しい・そうだ;waka 違う;wesihun 貴い;fusihūn 卑しい;sebjen 楽しい"],
+["動詞（辞書形）","bimbi いる・ある;jimbi 来る;genembi 行く;sambi 知る;ulhimbi 理解する;tuwambi 見る;donjimbi 聞く;gisurembi 話す;jembi 食べる;omimbi 飲む;banjimbi 生きる・生まれる;bahambi 得る;bumbi 与える;gaimbi 取る;sembi 言う;arambi 作る・書く;hūlambi 読む・呼ぶ;tacimbi 学ぶ;ilimbi 立つ;tembi 座る;dosimbi 入る;tucimbi 出る;yabumbi 行く・行う;feliyembi 歩く;ushambi 怒る;urgunjembi 喜ぶ;fonjimbi 尋ねる;jabumbi 答える;mutembi できる;buyembi 愛する;baimbi 求める;ejembi 覚える・記す"]
+,["副詞・接続詞","ambula とても;umai まったく（否定と）;yala 本当に;mujangga まことに;uthai すぐに;hūdun 速く;elhe ゆっくり・安らか;daruhai いつも;kemuni まだ・なお;damu ただ・だけ;gemu すべて;yooni ことごとく;dahūme 再び;jai そして・次に;bime かつ;aika もし;oci 〜ならば;ofi 〜なので;seme と（引用）;tuttu そのように;uttu このように;turgun 理由;akū ない・〜ない;te 今;teni そこで初めて"],
+["日常の名詞","gebu 名;se 年齢;jaka 物;hacin 種類・項目;baita 事・用事;mudan 回;erin 時;fon 時節;jilgan 声;menggun 銀・お金;aisin 金;boode 家で;gūnin 考え"],
+["日常の動詞（追加）","amgambi 眠る;getembi 目覚める;bederembi 帰る;alambi 告げる;wesimbi 上る;wasimbi 下りる;sabumbi 見える;gūnimbi 思う;udambi 買う;uncambi 売る;injembi 笑う;songgombi 泣く;sebjelembi 楽しむ;jobošombi 心配する;gosimbi いつくしむ;yuyumbi 飢える;ebimbi 満腹する;wajimbi 終わる;mohombi 尽きる;sonjombi 選ぶ;sarašambi 宴を楽しむ;hendumbi 言う;ekšimbi 急ぐ;baibumbi 必要とする"],
+["挨拶・感謝・返事（作例を含む）","baniha|ありがとう（感謝）;ambula baniha|大変ありがとう;elhe be fonjimbi|ご機嫌をうかがう（定型的な言い方）;elhe taifin|平和・泰平;sain|よろしい・良い;inu|はい・そうだ;waka|いいえ・違う;ombi|よい・かまわない;ojorakū|いけない・だめだ;mujangga|まことに・その通り;yala|本当に;bi sambi|私は知っている;bi sarkū|私は知らない;bi ulhimbi|私は分かる;bi ulhirakū|私は分からない;baiburakū|必要ない"],
+["命令・依頼（作例を含む）","jio|来い・おいで;gene|行け;tuwa|見よ;donji|聞け;gisure|話せ;te|座れ;tesu|どうぞお座りください;gaisu|どうぞお取りください;ili|立て;je|食べよ;omi|飲め;bu|与えよ;ume ekšire|急ぐな;ume gisurere|話すな;ume jobošoro|心配するな"],
+["質問（作例を含む）","ere ai|これは何か;tere ai|あれは何か;si we|君は誰か;sini gebu ai|君の名は何か;udu se oho|何歳になったか;ere udu|これはいくらか;ere udu menggun|これは銀いくらか;si ya bade bi|君はどこにいるか;si ya bai niyalma|君はどこの人か;ere be ainambi|これをどうするか;ainu uttu|なぜこうなのか;absi|どのように"],
+["自己紹介・日常の文（作例）","bi manju niyalma|私は満洲人です;mini gebu Nurhaci sembi|私の名はヌルハチという（名を入れ替えて使う）;bi manju gisun be tacimbi|私は満州語を学ぶ;bi manju bithe be hūlambi|私は満州文字の書を読む;bi manju bithe be arambi|私は満州文字を書く;bi boode bi|私は家にいる;bi boode bederembi|私は家に帰る;bi buda jembi|私は飯を食べる;bi cai omimbi|私は茶を飲む;bi amgambi|私は眠る;bi genembi|私は行く;bi jimbi|私は来る;bi yuyumbi|私は腹が減った;ere sain|これは良い;tere ehe|あれは悪い;ere amba|これは大きい;ere inenggi sain|今日は良い日だ;ere inenggi šahūrun|今日は寒い;ere inenggi halhūn|今日は暑い;sikse aga agaha|昨日雨が降った;cimari nimanggi nimarambi|明日雪が降る;mini mujilen sebjen|私の心は楽しい"],["社会・学び","gurun 国;ejen 主君;han 汗;hūwangdi 皇帝;beile 貝勒;amban 大臣;hafan 官;yamun 役所;jurgan 部;cooha 兵・軍;dain 戦;irgen 民;baksi 学者・先生;sefu 師;tacikū 学校;hergen 字;bithe 書;gucu 友;mukūn 氏族"],
+["家・街・道具","ordo 宮;deyen 殿;taktu 楼;puseli 店;kiyoo 橋;dengjan 灯;etuku 衣服;mahala 帽子;gūlha 靴;umiyesun 帯;hoošan 紙;fi 筆;futa 縄;yaha 炭;moro 碗;sabka 箸;efen 餅・菓子;hibsu 蜂蜜"],
+["植物・動物（追加）","orho 草;ilha 花;abdaha 葉;jakdan 松;toro 桃;cecike 小鳥;yarha 豹;buhū 鹿;dobihi 毛皮"],
+["心・性質","urgun 喜び;jobolon 憂い;gosin 仁愛;akdun 信;tondo 忠・正直;hiyoošun 孝;ginggun 敬;nomhon 穏やか;erdemu 徳;banin 性質"],
+["数量・位置","emke 一つ;farsi 片;dulin 半分;ton 数;jergi 回・段;ubu 分け前;yaya 誰でも・どんな;tome それぞれ;emgi 一緒に;ishunde 互いに;gūwa 他の;dulimba 中央"],
+["時（追加）","duleke 過ぎた;jidere 来たる;ere aniya|今年;inenggi dulin|正午;dobori dulin|夜半;ice 初め・新しい"],
+["動詞の活用形（過去・連体・命令）","jimbi|来る　過去 jihe／連体 jire／命令 jio;genembi|行く　過去 genehe／連体 genere／命令 gene;bimbi|いる・ある　過去 bihe／連体 bisire／命令 —;ombi|なる・よい　過去 oho／連体 ojoro／命令 o;sambi|知る　過去 saha／連体 sara／命令 sa;sembi|言う　過去 sehe／連体 sere／命令 se;jembi|食べる　過去 jeke／連体 jetere／命令 je;omimbi|飲む　過去 omiha／連体 omire／命令 omi;tuwambi|見る　過去 tuwaha／連体 tuwara／命令 tuwa;donjimbi|聞く　過去 donjiha／連体 donjire／命令 donji;gisurembi|話す　過去 gisurehe／連体 gisurere／命令 gisure;arambi|作る・書く　過去 araha／連体 arara／命令 ara;hūlambi|読む・呼ぶ　過去 hūlaha／連体 hūlara／命令 hūla;tacimbi|学ぶ　過去 taciha／連体 tacire／命令 taci;bumbi|与える　過去 buhe／連体 bure／命令 bu;gaimbi|取る　過去 gaiha／連体 gaire／命令 gaisu;tembi|座る　過去 tehe／連体 tere／命令 te;ilimbi|立つ　過去 iliha／連体 ilire／命令 ili;dosimbi|入る　過去 dosika／連体 dosire／命令 dosi;tucimbi|出る　過去 tucike／連体 tucire／命令 tuci;acambi|会う・合う　過去 acaha／連体 acara／命令 aca;mutembi|できる　過去 mutehe／連体 mutere／命令 mute;wajimbi|終わる　過去 wajiha／連体 wajire／命令 waji;amgambi|眠る　過去 amgaha／連体 amgara／命令 amga;bahanambi|できる・会得する　過去 bahanaha／連体 bahanara／命令 bahana"],
+["挨拶・日常の文（追加・作例）","sinde baniha bumbi|君に感謝を捧げる;bi sinde fonjiki|君に尋ねたい;ere be sinde bumbi|これを君にあげる;sini jihe be urgunjembi|君が来たのを喜ぶ;bi dahūme jimbi|私はまた来る;bi cimari jimbi|私は明日来る;si jio|君、来い;mini boo goro akū|私の家は遠くない;tere hoton ambula amba|あの城はとても大きい;ere bithe be tuwaci ombi|この書を見てよい;si mini gisun be donjimbio|君は私の言葉を聞くか;si manju gisun be sambio|君は満州語が分かるか;bi manju gisun be sarkū|私は満州語を知らない;ainu jirakū|なぜ来ないのか;ere ai baita|これは何事か;baita akū|用事はない・何事もない;aika sain oci|もし良ければ;bi ekšimbi|私は急ぐ;bi urgunjembi|私は喜ぶ;bi ushambi|私は怒る;abka sain|天気が良い;abka šahūrun|空が寒い"],["親族・身体（追加）","gege 姉;eshen 叔父;amji 伯父;omolo 孫;eigen 夫;niyaman 親族;boigon 戸・世帯;nakcu 母方のおじ;monggon 首;meifen うなじ;mayan 肩;ošoho 爪;sencehe 顎;sukū 皮;dara 腰;ahūn deo|兄弟"],
+["自然・地形（追加）","hada 峰;dabagan 峠;bujan 林;weji 森;birgan 小川;tun 島;wehe 石;yonggan 砂;boihon 土;gu 玉;ulan 溝;talman 霧"],
+["動物（追加）","temen 駱駝;eihen 驢馬;ujima 家畜;gasha 鳥;garu 白鳥"],
+["色・性質（追加）","boco 色;fulahūn 薄赤;sahahūkan 黒みがかった;hojo 美しい;bolgo 清い;narhūn 細い・精密な;muwa 粗い;tarhūn 太った;turga 痩せた;bayan 豊かな;yadahūn 貧しい;mentuhun 愚かな;sure 賢い;sula 暇な;elehun 穏やかな;kicebe 勤勉な;wenjehun 温かい;gelecuke 恐ろしい;jalu 満ちた;untuhun 空の;jabšan 幸運"],
+["政治・社会（追加）","tokso 荘園・村;falga 区・組;karun 見張り所;jase 柵・国境;jecen 辺境;calu 倉;doro 道・政;kooli 例・規則;fafun 法;boobai 宝;hūda 値段;hūdašambi 商う;weile 仕事・罪"],
+["動詞（さらに追加）","ejelembi 占める;tuwakiyambi 守る;ašambi 動く;fekumbi 跳ぶ;mukiyembi 消える;dekdembi 昇る・起こる;gidambi 打ち負かす;dailambi 征伐する;ulambi 伝える;isinambi 至る;ginggulembi 敬う;kundulembi 尊ぶ;hukšembi 恩に報いる;toktombi 定まる;sirambi 継ぐ;faššambi 励む;tacibumbi 教える;ulhibumbi 分からせる;ekiyembi 減る;nonggimbi 加える;bargiyambi 収める;yalumbi 乗る;dambi 吹く;afabumbi 委ねる"],
+["副詞・程度（追加）","geli また;tereci それから;yargiyan 実際;ainci おそらく;heni 少し;majige 少し;jing まさに;dembei とても;umesi 非常に;ele ますます;oyonggo 大切な"],
+["位置・関係を表す語","baru 〜に向かって;ishun 向かい;dube 端;ergi 側;dolo 〜の中;ninggu 上;fejergi 下;juleri 前;amala 後;dade もとは;gese 〜のような;adali 同じ;jakade 〜ので・〜のそばで;onggolo 〜の前に;manggi 〜した後;teile 〜だけ"],
+["文末・引用","kai 〜だよ（強調）;dere 〜だろう;sere 〜という;serengge 〜というものは;sehe 〜と言った"],
+["数の言い方（作例）","juwan emu|十一;juwan juwe|十二;orin emu|二十一;ilan tanggū|三百;sunja minggan|五千;emu tumen|一万"],
+["時の言い方（作例）","duleke aniya|去年;jidere aniya|来年;ere biya|今月;ere inenggi|今日;ere erin|今・この時"],
+["動詞の活用形（追加）","wambi|殺す　過去 waha／連体 wara／命令 wa;gabtambi|射る　過去 gabtaha／連体 gabtara／命令 gabta;ucarambi|出会う　過去 ucaraha／連体 ucarara／命令 ucara;isambi|集まる　過去 isaha／連体 isara／命令 isa;ukambi|逃げる　過去 ukaha／連体 ukara／命令 uka;jorimbi|指す・示す　過去 joriha／連体 jorire／命令 jori;alimbi|受ける　過去 aliha／連体 alire／命令 ali;weilembi|仕える・働く　過去 weilehe／連体 weilere／命令 weile;dedumbi|横になる・寝る　過去 deduhe／連体 dedure／命令 dedu;baitalambi|用いる　過去 baitalaha／連体 baitalara／命令 baitala"],
+["日常の文（さらに追加・作例）","ere hoton i gebu ai|この城の名は何か;ere ai jaka|これは何か;tere we|あれは誰か;we jihe|誰が来たか;bi morin de yalumbi|私は馬に乗る;mini bithe be tuwa|私の書を見よ;ere be si gaisu|これを君が取れ;bi sinde alambi|私は君に告げる;bi sinci tacimbi|私は君から学ぶ;mini ama boode bi|私の父は家にいる;mini eniye cai omimbi|私の母は茶を飲む;abka agambi|雨が降る;edun dambi|風が吹く;šun tucimbi|日が出る;ere aniya ambula šahūrun|今年はとても寒い;bi sinde buda bumbi|私は君に飯を与える"]
+];
+var all=[];D.forEach(function(c){c[1].split(";").forEach(function(x){var ph=x.indexOf("|")>=0,i=ph?x.indexOf("|"):x.indexOf(" ");all.push({c:c[0],r:x.slice(0,i),j:x.slice(i+1),p:ph})})});
+var cur="全部",q="";
+var cats=["全部"].concat(D.map(function(c){return c[0]}));
+var ce=document.getElementById("cats");
+cats.forEach(function(n){var b=document.createElement("button");b.textContent=n;b.onclick=function(){cur=n;draw()};ce.appendChild(b)});
+function draw(){
+ Array.prototype.forEach.call(ce.children,function(b){b.className=b.textContent===cur?"on":""});
+ var h="",n=0;
+ D.forEach(function(c){
+  if(cur!=="全部"&&cur!==c[0])return;
+  var ws=all.filter(function(w){return w.c===c[0]&&(!q||w.r.indexOf(q)>=0||w.j.indexOf(q)>=0)});
+  if(!ws.length)return;n+=ws.length;
+  h+="<h2>"+c[0]+"</h2><div class='grid"+(ws.every(function(w){return w.p})?" one":"")+"'>"+ws.map(function(w){return "<div class='w"+(w.p?" ph":"")+"'><span class='m'>"+conv(w.r)+"</span><div class='t'><b>"+w.r+"</b><span>"+w.j+"</span></div></div>"}).join("")+"</div>";
+ });
+ document.getElementById("list").innerHTML=h;
+ document.getElementById("n").textContent=n+" 語";
+}
+document.getElementById("q").addEventListener("input",function(){q=this.value.trim().toLowerCase();draw()});
+draw();
+</script></main></body></html>
